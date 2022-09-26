@@ -1,11 +1,17 @@
 import { GameController } from "phosphor-react";
 import { SelectComp, InputComp, SelectWeek } from "../common";
+import { Check } from "phosphor-react";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as CheckBox from "@radix-ui/react-checkbox";
+import { GameProps } from "../../App";
 
-export function Form() {
+interface Props {
+  data: GameProps[];
+}
+export function Form({ data }: Props) {
   return (
     <form className="z-10">
-      <SelectComp />
+      <SelectComp data={data} />
       <InputComp
         id="name"
         htmlFor="name"
@@ -48,10 +54,14 @@ export function Form() {
           />
         </div>
       </div>
-      <div className="mt-3 flex gap-2 text-sm">
-        <input type="checkbox" />
+      <label className="mt-3 flex gap-2 text-sm items-center">
+        <CheckBox.Root className="w-6 h-6 rounded bg-zinc-900 p-1">
+          <CheckBox.CheckboxIndicator>
+            <Check className="w-4 h-4 text-emerald-400" />
+          </CheckBox.CheckboxIndicator>
+        </CheckBox.Root>
         Costumo me conectar ao chat de voz
-      </div>
+      </label>
       <footer className="mt-4 flex justify-end gap-2">
         <Dialog.Close className="bg-zinc-500 hover:bg-zinc-600 px-5 h-12 rounded-md font-semibold">
           Cancelar
